@@ -120,8 +120,7 @@ class snake:
 					self.new_head[1] >= HEIGHT or self.new_head[1] < 0 or
 					self.new_head in self.snake[1:]):
 				self.lose=self.timer.lost_game()
-				#self.game_over()
-				self.reset_game()
+				return
 
 		# Draw everything
 			self.screen.fill(BLACK)
@@ -136,4 +135,4 @@ class snake:
 			self.clock.tick(self.snake_speed)
 
 		pygame.quit()
-
+	
