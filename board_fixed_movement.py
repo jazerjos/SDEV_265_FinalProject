@@ -157,7 +157,6 @@ class PlayButton(Button):
 			self.button_move.grid_remove()
 		if row == 0 and colum == 4 :
 			self.button_move.grid_remove()
-		
 		if row == 6 and colum == 1 :
 			self.button_move.grid_remove()
 		if row == 6 and colum == 2 :
@@ -166,7 +165,6 @@ class PlayButton(Button):
 			self.button_move.grid_remove()
 		if row == 6 and colum == 4 :
 			self.button_move.grid_remove()
-
 		if self.row == 1 and self.col == 6 :
 			self.button_move.grid_remove()
 		if self.row == 2 and self.col == 6 :
@@ -175,8 +173,7 @@ class PlayButton(Button):
 			self.button_move.grid_remove()
 		if self.row == 4 and self.col == 6 :
 			self.button_move.grid_remove()
-		
-		
+
 		if self.row == 1 and self.col == 0 :
 			self.button_move.grid_remove()
 		if self.row == 2 and self.col == 0 :
@@ -186,7 +183,6 @@ class PlayButton(Button):
 		if self.row == 4 and self.col == 0 :
 			self.button_move.grid_remove()
 
-
 	def on_button_click(self):
 		if self.row == 0 and self.col == 1:
 			self.MiniGame_One()
@@ -194,7 +190,6 @@ class PlayButton(Button):
 			self.MiniGame_One()
 		if self.row == 0 and self.col == 3:
 			self.MiniGame_One()
-		
 		if self.row == 0 and self.col == 4:
 			self.MiniGame_One()
 		if self.row == 6 and self.col == 1 :
@@ -205,7 +200,6 @@ class PlayButton(Button):
 			self.MiniGame_Two()
 		if self.row == 6 and self.col == 4 :
 			self.MiniGame_Two()
-		
 
 		if self.row == 1 and self.col == 6 :
 			self.MiniGame_Three()
@@ -218,7 +212,6 @@ class PlayButton(Button):
 		if self.row == 5 and self.col == 6 :
 			self.MiniGame_Three()
 
-
 		if self.row == 1 and self.col == 0 :
 			self.MiniGame_Four()
 		if self.row == 2 and self.col == 0 :
@@ -229,21 +222,7 @@ class PlayButton(Button):
 			self.MiniGame_Four()
 		if self.row == 5 and self.col == 0 :
 			self.MiniGame_Four()
-
-		
-	def MiniGame_Four(self):	
-		#check if the player won or lost the mini-game
-		game_four = flappyBird()	
-		game_four.run_game()
-		if game_four.getWon():
-			self.grid_remove()
-			self.button_move.grid(row=ROWS//2, column=COLS//2)
-		if game_four.getLost():
-			self.button_move.grid_remove()
-			self.grid_remove()
-			self.button_move.getEndButton().grid(row=ROWS//2, column=COLS//2)
-			board.swap_current_four_players()   
-	
+	   
 	def MiniGame_Two(self):
 		game_Two = MiniGame_Two()
 		game_Two.Play_Mini()
@@ -283,6 +262,19 @@ class PlayButton(Button):
 			self.button_move.getEndButton().grid(row=ROWS//2, column=COLS//2)
 			board.swap_current_four_players()
 			print("current player "+str(board.get_current_player_index()))
+
+	def MiniGame_Four(self):	
+		#check if the player won or lost the mini-game
+		game_four = flappyBird()	
+		game_four.run_game()
+		if game_four.getWon():
+			self.grid_remove()
+			self.button_move.grid(row=ROWS//2, column=COLS//2)
+		if game_four.getLost():
+			self.button_move.grid_remove()
+			self.grid_remove()
+			self.button_move.getEndButton().grid(row=ROWS//2, column=COLS//2)
+			board.swap_current_four_players()
 
 	def getendTurn(self):
 		return self.endTurn
@@ -462,7 +454,40 @@ class Board:
 				rect = self.squares[6][0]
 				canvas_widget=self.squares[self.player_positions[3][1]][self.player_positions[3][0]]    #control movement player 4
 				canvas_widget.create_image(50, 0, anchor="nw", image=self.PLAYERS[3].image)
+		'''
+		for row in range(ROWS):
+			for col in range(COLS):
+				if  col == 0 or (row < 1) or col == COLS-1 or row>ROWS-2:
+					if col in range (row%2==0,COLS,2): 
+						colorBg="red"
+					else:
+						colorBg="black"
+				else:
+					colorBg="white"
+				rect = self.squares[row][col]
+				rect.config(bg=colorBg)
+				rect.delete("all")
+				#player 1
+				canvas_widget=self.squares[self.player_positions[0][1]][self.player_positions[0][0]]#control movement player one
+				canvas_widget.create_image(50, 50, anchor="nw", image=self.PLAYERS[0].image)
+				
+				#player 2
+				rect = self.squares[0][6]
+				canvas_widget=self.squares[self.player_positions[1][1]][self.player_positions[1][0]]    #control movement player 2
+				canvas_widget.create_image(0, 50, anchor="nw", image=self.PLAYERS[1].image)
+				
+				#player 3
+				rect = self.squares[row][col]
+				rect = self.squares[6][6]
+				canvas_widget=self.squares[self.player_positions[2][1]][self.player_positions[2][0]]    #control movement player 3
+				canvas_widget.create_image(0, 0, anchor="nw", image=self.PLAYERS[2].image)
 	
+				#player 4
+				rect = self.squares[row][col]
+				rect = self.squares[6][0]
+				canvas_widget=self.squares[self.player_positions[3][1]][self.player_positions[3][0]]    #control movement player 4
+				canvas_widget.create_image(50, 0, anchor="nw", image=self.PLAYERS[3].image)
+				'''
 	def labelPlayer(self,currentPlayer):
 			if currentPlayer==1:
 				self.label.grid(row=1, column=1,columnspan=2,sticky='nw')
