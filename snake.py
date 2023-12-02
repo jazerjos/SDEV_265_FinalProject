@@ -113,8 +113,8 @@ class snake:
 				self.food = (random.randint(0, WIDTH - GRID_SIZE) // GRID_SIZE * GRID_SIZE,
 						random.randint(0, HEIGHT - GRID_SIZE) // GRID_SIZE * GRID_SIZE)
 				self.snake_speed += 1
-			else:
-				self.snake.pop()
+			#else:
+				#self.snake.pop()
 			
 		# Check for collision with boundaries or itself
 			if (self.new_head[0] >= WIDTH or self.new_head[0] < 0 or
