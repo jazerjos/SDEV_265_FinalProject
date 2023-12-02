@@ -68,7 +68,8 @@ class snake:
 # Function to reset the game
 	def reset_game(self):
 		self.snake, self.snake_dir, self.snake_speed, self.food
-		self.snake = [(200, 200)]
+		self.snake = [(random.randint(0, WIDTH - GRID_SIZE) // GRID_SIZE * GRID_SIZE,
+					random.randint(0, HEIGHT - GRID_SIZE) // GRID_SIZE * GRID_SIZE)]
 		self.snake_dir = "RIGHT"
 		self.snake_speed = 20
 		self.food = (random.randint(0, WIDTH - GRID_SIZE) // GRID_SIZE * GRID_SIZE,

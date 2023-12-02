@@ -7,6 +7,8 @@ pygame.init()
 
 WIDTH, HEIGHT = 800, 800
 size = (WIDTH, HEIGHT)
+GRID_SIZE = 20
+
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -17,8 +19,12 @@ class MiniGame_Two:
 	def __init__(self):
 		self.screen = pygame.display.set_mode(size)
 		pygame.display.set_caption("Board")
-		self.rect1_x, self.rect1_y = 100, 200  # Initial position for the first rectangle
-		self.rect2_x, self.rect2_y = 700, 400  # Initial position for the second rectangle
+		self.rect1_x, self.rect1_y = (random.randint(0, WIDTH - GRID_SIZE) // GRID_SIZE * GRID_SIZE,
+										200)
+		#self.rect1_x, self.rect1_y = 100, 200  # Initial position for the first rectangle
+		self.rect2_x, self.rect2_y = (random.randint(0, WIDTH - GRID_SIZE) // GRID_SIZE * GRID_SIZE,
+									100)
+		#self.rect2_x, self.rect2_y = 700, 400  # Initial position for the second rectangle
 		self.x_start, self.y_start = 100, 770
 		self.x_end, self.y_end = 300, 770
 		self.start_point = (self.x_start, self.y_start)
